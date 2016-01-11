@@ -6,17 +6,16 @@ library(rgeos)
 
 railways <- readOGR("data", layer = "railways")
 
-industrial <- list(railways[railways$type == "industrial"])
+industrial <- railways[railways$type == "industrial",]
 
 industrial
 
 
+ind_buffer <- gBuffer(industrial, width=1000, byid=TRUE)
 
 
-prj_string_WGS <- CRS("+proj=longlat +datum=WGS84")
-mypoints <- SpatialPoints(coords, proj4string=prj_string_WGS)
-
-
+Buffers the "industrial" railways with a buffer
+of 1000m (hint: gBuffer with byid=TRUE)
 
 
 
